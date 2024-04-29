@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "BaseERC20": {
+      "address": "0x1BBe16eAf522D0e5Ec45d3B073FD6BCd393E5171",
+      "startBlock": 5780178
+    }
+  }
+}
