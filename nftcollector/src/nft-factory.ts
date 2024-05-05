@@ -1,3 +1,4 @@
+import { DataSourceContext } from "@graphprotocol/graph-ts"
 import {
   NFTCreated as NFTCreatedEvent,
   NFTRegesitered as NFTRegesiteredEvent,
@@ -9,6 +10,8 @@ import {
   OwnershipTransferred
 } from "../generated/schema"
 
+import { NFT } from '../generated/templates'
+
 export function handleNFTCreated(event: NFTCreatedEvent): void {
   let entity = new NFTCreated(
     event.transaction.hash.concatI32(event.logIndex.toI32())
@@ -18,6 +21,10 @@ export function handleNFTCreated(event: NFTCreatedEvent): void {
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
   entity.transactionHash = event.transaction.hash
+
+  NFT.create(event.params.nftCA);
+
+
 
   entity.save()
 }
